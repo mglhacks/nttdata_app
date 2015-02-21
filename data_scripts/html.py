@@ -2,9 +2,9 @@
 
 from BeautifulSoup import BeautifulSoup
 
-handler = open('tokyo.html').read()
+handler = open('tmp.html').read()
 soup = BeautifulSoup(handler)
-h1s = soup.findAll("h1", { "class" : "card__content__title js-prerender-title" })
+spans = soup.findAll("span", { "class" : "mdLocation01SpotName" })
 
-for h1 in h1s:
-    print h1.text
+for span in spans:
+    print span.text
