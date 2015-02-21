@@ -2,6 +2,7 @@
 
 from apis import *
 from database import *
+import codecs
 
 # langs = [ar, ja, bg, kn, bn, ko, ca, lt, cs, lv, da, ml, de, mr,
 #          el, nl, en, no, eu, ro, fa, ru, fi, sk, fil, sl, fr, sr,
@@ -30,5 +31,7 @@ def main_work(place_names):
                 if r['language'] == l:
                     save_review(place_id, r)
 
+f = codecs.open('tokyo.csv', 'r', 'utf-8')
+places = f.read().splitlines()
 db_init();
-main_work(['tokyo tower'])
+main_work(places[1:])
