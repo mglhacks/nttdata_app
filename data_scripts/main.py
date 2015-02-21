@@ -32,7 +32,7 @@ def main_work(place_names):
                 if r['language'] == l:
                     save_review(place_id, r)
 
-f = codecs.open('tokyo.csv', 'r', 'utf-8')
+f = codecs.open('kyoto.csv', 'r', 'utf-8')
 places = f.read().splitlines()
 db_init();
-main_work(places[13:])
+main_work(places)
