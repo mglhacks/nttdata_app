@@ -15,7 +15,7 @@ def main_work(place_names):
         # search place
         search_results = search_api(pn)
         if len(search_results['results']) == 0:
-            return # no place found
+            continue # no place found
         else:
             place_id = search_results['results'][0]['place_id']
         # get details of the top place without specifying language
@@ -25,8 +25,9 @@ def main_work(place_names):
         # get details of the top place for each language
         for l in langs:
             d = details_api(place_id, l)['result']
-            save_place_details(d)
             save_name(place_id, d['name'], l)
+            if 'reviews' not in d:
+                continue # No review
             for r in d['reviews']:
                 if r['language'] == l:
                     save_review(place_id, r)
@@ -34,4 +35,4 @@ def main_work(place_names):
 f = codecs.open('tokyo.csv', 'r', 'utf-8')
 places = f.read().splitlines()
 db_init();
-main_work(places[1:])
+main_work(places[13:])
