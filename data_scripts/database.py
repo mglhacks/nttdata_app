@@ -4,7 +4,7 @@ import sqlite3
 import os.path
 import json
 
-DB = 'honban.db'
+DB = 'honban-new.db'
 conn = sqlite3.connect(DB)
 
 def save_raw_results(response, table):
@@ -32,7 +32,7 @@ def save_name(place_id, name, language):
     conn.execute("""insert into names(place_id, name, language) values (?, ?, ?)""", (place_id, name, language))
     conn.commit()
 
-def save_place_details(details):
+def save_place_details(details, pref_id=0, rurubu_pref_rank=0):
     """Save place details into the database"""
     values = []
     values.append(details.get('website'))
@@ -52,6 +52,8 @@ def save_place_details(details):
     values.append(details.get('formatted_address'))
     values.append(json.dumps(details.get('types')))
     values.append(details.get('icon'))
+    values.append(pref_id)
+    values.append(rurubu_pref_rank)
     conn.execute("""insert into places(
     website,
     rating,
@@ -69,8 +71,10 @@ def save_place_details(details):
     address_components,
     formatted_address,
     types,
-    icon)
-    values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    icon,
+    pref_id,
+    rurubu_pref_rank)
+    values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, tuple(values))
     conn.commit()
 
@@ -94,7 +98,9 @@ def db_init():
     address_components text,
     formatted_address text,
     types text,
-    icon text);''')
+    icon text,
+    pref_id integer,
+    rurubu_pref_rank integer);''')
 
     conn.execute('''create table if not exists names
     (id integer primary key not null,

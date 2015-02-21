@@ -4,7 +4,7 @@ from BeautifulSoup import BeautifulSoup
 
 handler = open('tmp.html').read()
 soup = BeautifulSoup(handler)
-spans = soup.findAll("span", { "class" : "mdLocation01SpotName" })
+elements = soup.findAll("h3")
 
-for span in spans:
-    print span.text
+for e in elements:
+    print e.text
