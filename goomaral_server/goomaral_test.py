@@ -1,69 +1,62 @@
-# 2015/02/21
-# NTT Data Hackathon
-# Goo Maral Application
+"""
+2015/02/21
+NTT Data Hackathon
+Goo Maral Application
+"""
 
-from flask import Flask, render_template
+from flask import Flask, request, send_from_directory
+from flask import render_template
 from flask_bootstrap import Bootstrap
-from flask_appconfig import AppConfig
-from flask_wtf import Form, RecaptchaField
-from wtforms import TextField, HiddenField, ValidationError, RadioField,\
-    BooleanField, SubmitField, IntegerField, FormField, validators
-from wtforms.validators import Required
 
+# app creation
+def create_app():
+  app = Flask(__name__, static_url_path='')
+  Bootstrap(app)
+  return app
+app = create_app()
 
-# straight from the wtforms docs:
-class TelephoneForm(Form):
-    country_code = IntegerField('Country Code', [validators.required()])
-    area_code = IntegerField('Area Code/Exchange', [validators.required()])
-    number = TextField('Number')
+# route for INDEX
+@app.route("/")
+def hello():
+    return render_template('index.html')
 
+# route for PROFILE
+@app.route("/profile")
+def profile():
+	return render_template('profile.html')
 
-class ExampleForm(Form):
-    field1 = TextField('First Field', description='This is field one.')
-    field2 = TextField('Second Field', description='This is field two.',
-                       validators=[Required()])
-    hidden_field = HiddenField('You cannot see this', description='Nope')
-    recaptcha = RecaptchaField('A sample recaptcha field')
-    radio_field = RadioField('This is a radio field', choices=[
-        ('head_radio', 'Head radio'),
-        ('radio_76fm', "Radio '76 FM"),
-        ('lips_106', 'Lips 106'),
-        ('wctr', 'WCTR'),
-    ])
-    checkbox_field = BooleanField('This is a checkbox',
-                                  description='Checkboxes can be tricky.')
+# tests
+@app.route('/hello/')
+@app.route('/hello/<name>')
+def hello_template(name=None):
+	return render_template('hello.html', name=name)
 
-    # subforms
-    mobile_phone = FormField(TelephoneForm)
+@app.route('/test')
+def test_page():
+	return render_template('test.html')
 
-    # you can change the label as well
-    office_phone = FormField(TelephoneForm, label='Your office phone')
+# route for static js, css files
+@app.route('/js/<path:path>')
+def send_js(path):
+    return send_from_directory('static/js', path)
+@app.route('/css/<path:path>')
+def send_css(path):
+    return send_from_directory('static/css', path)
+@app.route('/fonts/<path:path>')
+def send_fonts(path):
+    return send_from_directory('static/fonts', path)
+@app.route('/font-awesome/<path:path>')
+def send_fontawesome(path):
+    return send_from_directory('static/font-awesome', path)
+@app.route('/img/<path:path>')
+def send_img(path):
+    return send_from_directory('static/img', path)
+@app.route('/less/<path:path>')
+def send_less(path):
+    return send_from_directory('static/less', path)
 
-    submit_button = SubmitField('Submit Form')
+# main
+if __name__ == "__main__":
 
-    def validate_hidden_field(form, field):
-        raise ValidationError('Always wrong')
-
-
-def create_app(configfile=None):
-    app = Flask(__name__)
-    AppConfig(app, configfile)  # Flask-Appconfig is not necessary, but
-                                # highly recommend =)
-                                # https://github.com/mbr/flask-appconfig
-    Bootstrap(app)
-
-    # in a real app, these should be configured through Flask-Appconfig
-    app.config['SECRET_KEY'] = 'devkey'
-    app.config['RECAPTCHA_PUBLIC_KEY'] = \
-        '6Lfol9cSAAAAADAkodaYl9wvQCwBMr3qGR_PPHcw'
-
-    @app.route('/')
-    def index():
-        form = ExampleForm()
-        form.validate_on_submit() #to get error messages to the browser
-        return render_template('index.html', form=form)
-
-    return app
-
-if __name__ == '__main__':
-    create_app().run(debug=True)
+	app.debug = True
+	app.run(host="0.0.0.0")
