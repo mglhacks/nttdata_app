@@ -4,25 +4,54 @@ import sqlite3
 import os.path
 import json
 
-def store_place(res, conn):
+DB = 'test1.db'
+conn = sqlite3.connect(DB)
+
+def save_raw_results(response, table):
+    conn.execute("""insert into %s(url, result) values (?, ?)"""%(table),\
+                 (response.url, json.dumps(response.json())))
+    conn.commit()
+
+def save_review(place_id, review):
+    """Save review into the database"""
+    values = [place_id]
+    values.append(review.get('rating'))
+    values.append(review.get('aspects')[0].get('rating'))
+    values.append(review.get('aspects')[0].get('type'))
+    values.append(review.get('language'))
+    values.append(review.get('text'))
+    values.append(review.get('author_name'))
+    values.append(review.get('author_url'))
+    values.append(review.get('time'))
+    conn.execute("""insert into reviews(place_id, rating, aspects_rating,
+    aspects_type, language, text, author_name, author_url, time) values (?, ?, ?, ?, ?, ?, ?, ?, ?)""",\
+                 tuple(values))
+    conn.commit()
+
+def save_name(place_id, name, language):
+    conn.execute("""insert into names(place_id, name, language) values (?, ?, ?)""", (place_id, name, language))
+    conn.commit()
+
+def save_place_details(details):
+    """Save place details into the database"""
     values = []
-    values.append(res.get('website'))
-    values.append(res.get('rating'))
-    values.append(res.get('utc_offset'))
-    values.append(res.get('user_ratings_total'))
-    values.append(res.get('name'))
-    values.append(json.dumps(res.get('photos')))
-    values.append(json.dumps(res.get('geometry')))
-    values.append(res.get('adr_address'))
-    values.append(res.get('place_id'))
-    values.append(res.get('international_phone_number'))
-    values.append(res.get('vicinity'))
-    values.append(json.dumps(res.get('reviews')))
-    values.append(res.get('url'))
-    values.append(json.dumps(res.get('address_components')))
-    values.append(res.get('formatted_address'))
-    values.append(json.dumps(res.get('types')))
-    values.append(res.get('icon'))
+    values.append(details.get('website'))
+    values.append(details.get('rating'))
+    values.append(details.get('utc_offset'))
+    values.append(details.get('user_ratings_total'))
+    values.append(details.get('name'))
+    values.append(json.dumps(details.get('photos')))
+    values.append(json.dumps(details.get('geometry')))
+    values.append(details.get('adr_address'))
+    values.append(details.get('place_id'))
+    values.append(details.get('international_phone_number'))
+    values.append(details.get('vicinity'))
+    values.append(json.dumps(details.get('reviews')))
+    values.append(details.get('url'))
+    values.append(json.dumps(details.get('address_components')))
+    values.append(details.get('formatted_address'))
+    values.append(json.dumps(details.get('types')))
+    values.append(details.get('icon'))
     conn.execute("""insert into places(
     website,
     rating,
@@ -45,9 +74,8 @@ def store_place(res, conn):
     """, tuple(values))
     conn.commit()
 
-def db_init(db):
+def db_init():
     """Initializes a database with necessarry empty tables"""
-    conn = sqlite3.connect(db)
     conn.execute('''create table if not exists places
     (id integer primary key not null,
     website text,
@@ -67,4 +95,38 @@ def db_init(db):
     formatted_address text,
     types text,
     icon text);''')
+
+    conn.execute('''create table if not exists names
+    (id integer primary key not null,
+    place_id text not null,
+    name text not null,
+    language text not null);''')
+
+    conn.execute('''create table if not exists reviews
+    (id integer primary key not null,
+    place_id text not null,
+    rating integer not null,
+    aspects_rating integer not null,
+    aspects_type text,
+    language text not null,
+    text text,
+    author_name text,
+    author_url text,
+    time integer not null);''')
+
+    conn.execute('''create table if not exists search_raw
+    (id integer primary key not null,
+    url text not null,
+    result text not null);''')
+
+    conn.execute('''create table if not exists details_raw
+    (id integer primary key not null,
+    url text not null,
+    result text not null);''')
+
+    conn.execute('''create table if not exists gplus_raw
+    (id integer primary key not null,
+    url text not null,
+    result text not null);''')
+
     conn.commit()

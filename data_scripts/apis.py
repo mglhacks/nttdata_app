@@ -3,6 +3,8 @@
 import requests # Requests is recommended over urllib*
 import json
 
+from database import *
+
 API_KEY = 'AIzaSyBBN84m4bDAzLnE1dhZ-QpDtAJcq-upOes'
 
 def search_api(query, types=''):
@@ -13,6 +15,7 @@ def search_api(query, types=''):
     if types != '':
         params['types'] = types
     response = requests.get(base_url, params=params)
+    save_raw_results(response, 'search_raw')
     return response.json()
 
 def details_api(placeid, language=''):
@@ -23,6 +26,7 @@ def details_api(placeid, language=''):
     if language != '':
         params['language'] = language
     response = requests.get(base_url, params=params)
+    save_raw_results(response, 'details_raw')
     return response.json()
 
 def gplus_api(userid):
@@ -31,6 +35,7 @@ def gplus_api(userid):
     base_url = 'https://www.googleapis.com/plus/v1/people/' + userid
     params = {'key' : API_KEY}
     response = requests.get(base_url, params=params)
+    save_raw_results(response, 'gplus_raw')
     return response.json()
 
 # Examples:
