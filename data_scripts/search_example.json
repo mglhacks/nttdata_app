@@ -1,0 +1,35 @@
+{
+  "status": "OK", 
+  "html_attributions": [], 
+  "results": [
+    {
+      "rating": 4.4, 
+      "name": "The University of Tokyo", 
+      "reference": "CnRqAAAADthABcJwhnJIoRGV2Mu2Rxbxv3STkyMjFq7cM2ziWHZr0fvGoQjmkXv3kS5WPpOGpmH901MZO4Jfcv78d2hFysIVlQALihAou1vgrShesDD8IIulBS5Gs7QYTDAy-GuMi65q0m9CXj-B70Jf_hGcYRIQ3ikp5QsZ5rryM7grE_c4vxoUHu9gGLg0f466e_9vyDofqczkMsM", 
+      "geometry": {
+        "location": {
+          "lat": 35.712678, 
+          "lng": 139.761989
+        }
+      }, 
+      "place_id": "ChIJo24g-i-MGGARlboTg0kH5DA", 
+      "photos": [
+        {
+          "photo_reference": "CqQBmAAAABHgzmJOxhJv8k0OzekLetTkZSiwx-9SRVCeo0bvJpzTLjc95-GIdxNqiBw61tRMxB7rWNgsc9Fu6aQkPih9b5Sbbu4LcGci-xk1LW1b28gtTDM2N_bSGA3ku3FgJUaQY3g4vRvjRDVTmnYExFCVoLHxIdKBmhlu80ELCSPDPsZOwjH1zAhTNqe9j6SFM8cskJPrVVJsW8becevS6H6PnYISEJV8xcP0YYAw0retJdhBMrYaFBGl_j9NLBqqzf7--LjPPvJh0S2B", 
+          "width": 854, 
+          "html_attributions": [
+            "From a Google User"
+          ], 
+          "height": 480
+        }
+      ], 
+      "formatted_address": "7-3-1 Hongo, Bunkyo, Tokyo 113-8654, Japan", 
+      "id": "61c48d499dcb0525bc4cc67c66c62c85f81890f9", 
+      "types": [
+        "university", 
+        "establishment"
+      ], 
+      "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/university-71.png"
+    }
+  ]
+}

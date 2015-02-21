@@ -1,0 +1,223 @@
+{
+  "status": "OK",
+  "html_attributions": [],
+  "result": {
+    "website": "http://www.u-tokyo.ac.jp/index_j.html",
+    "rating": 4.4,
+    "utc_offset": 540,
+    "user_ratings_total": 115,
+    "name": "東京大学",
+    "reference": "CmRfAAAAgp7YB2m1XS1gtwk8-4BvRKqwLAQ_fSky8nCkkDwIGmxCD7lFqtnj95c8yvb1g5hSatQqBVnsP1CEfgTaPRh7B8Z4IbJ-o1QlxAoMK3g4vlXQtiCfz1Hmk9XC6TBYW09hEhD0-H7Cm3IY07PrVp8yiUdqGhQ9BevuJJn6K_ZZY7sPRxNXgz1waA",
+    "photos": [
+      {
+        "photo_reference": "CqQBmAAAANmMXN0SQXMbvDbtUfEWYv61Dhn-pJMhVl8SURPBcyji-K7yipIf0yKkDHp_v1sKm2MhtD3mCvXhEejL7EDKdAJbton-vASuMSIn-7LxnKuAU7-PbNxnVdF3p_eVvM1F44EGi2YvOPLZTlgyszcgm1NhhEYH4NhjZ-5m9v59EB4MJnMoCIFAcAU-_3_t8Llt2wUA032-oSEyDrasXMnluMwSEAvvGTroXjQlSP5Xtf3QWHkaFG8qZTcSc9jzeBUtnkaclFRTcS_H",
+        "width": 854,
+        "html_attributions": [
+          "Google ユーザー"
+        ],
+        "height": 480
+      },
+      {
+        "photo_reference": "CqQBmwAAAI06QM_N1ssWXZkEON9eurzlFQdNCJ_bIb9m-UZdBagaitodZsbBtNX_35DKiYRBlRhobxWGMlqpaBvlxHUpAgw4b_ytRDognbtJ8jgg0AEDCjh0vwGHGVBFCVUMzzJ6MY9df5KQLY_IK_Usmspbh4NmfU39wV1gixGCos8Rjw1zGXQvTMqiRLtZM4gCT4UHByX1lmOH5L2EpXgrXJKLwrYSENy56b2nINuMFsuEjpWsiXUaFPUy7FKebEFtk143fH6B61bw2sdv",
+        "width": 854,
+        "html_attributions": [
+          "Google ユーザー"
+        ],
+        "height": 480
+      },
+      {
+        "photo_reference": "CnRoAAAAjVxJFrgwME7T2JfbgEHQv9XJRjPk4vvQHFAl1VF-N9VvQLse5mtp55_5nygVULHofmSIcT-SL-5WdDjkqloGJ83ACN86cJKDaO0ceN_iTsS4RT0GO8jAI_cc8Ax8Krm20HFYRSvDiy5Fna-_KHPrTBIQAgL2KvChpXMBn6u_nnkiThoUU-trCe2_PylexbT-qwz1y-0cKAk",
+        "width": 3616,
+        "html_attributions": [
+          "<a href=\"https://plus.google.com/106109042040745021123\">sweet boy</a>"
+        ],
+        "height": 2048
+      },
+      {
+        "photo_reference": "CoQBeAAAAO0E7VaIWkwG6MsiNkdVCMhw1aA-Zv3JyR7wGsWQrVHAMnqzx8HOFZqVIGSXfObYtB9Hi8wLCwcNtzXTcYvy0P3FzYjdilm5WOIyO6Vy7PSIB1wg564Y2_6x4eiTnh0b78qsLDbaPlaeg8SAiUBKjsT4YIGU0Gac2n37EQgur2SPEhAgSm9V4cfBVp0BhEt_Xyg3GhTI-tnrYvR-9H4NzdMF204VXWtb0w",
+        "width": 800,
+        "html_attributions": [
+          "<a href=\"https://plus.google.com/109259214924735343697\">徐志鹏</a>"
+        ],
+        "height": 533
+      },
+      {
+        "photo_reference": "CoQBewAAACPFMXTibq5s5tvUCSC6v0yA15VTzkS1ICjMUcqMSN3DZviTOm3aiSMb8PB-rCWwhpT8kXBTnHg14jM6n2Peazi93TzBwzfiqt1UhkBTEUcp3A5ObJlLysg3ivTj8tRbxQLLMCw_EiQw7j6P_OoCyphAx2KnFDWwVhZWb2j2HSjvEhAGvev9mwHzqdVF1dWDdnrBGhSiCiA4DhqIt9Id6ULc2_p3s0ecxw",
+        "width": 500,
+        "html_attributions": [
+          "<a href=\"https://plus.google.com/112199920650557587335\">Ырысбек Советбек</a>"
+        ],
+        "height": 375
+      },
+      {
+        "photo_reference": "CoQBewAAAH5I9MqKFmsIWZZmaaWN1zhbS-7JFtfduxmEOz7ZQf74-ap2CsQbppLgaweXu0E-2IK3jC6_uPNthUqXEFhAz7AeDnUbDRG8tpCUls41RPP69tGvKfK2UC0oB1jAWLBRkdIeVZQkV-QM6bHjKiesaQf_2e9c91gYQQzYri5rJluUEhAkuC0qW0GBPIy2ukQ9H6cZGhQU-YJZ6irQp1ucrvEezcKKTRJNbw",
+        "width": 640,
+        "html_attributions": [
+          "Google ユーザー"
+        ],
+        "height": 480
+      }
+    ],
+    "geometry": {
+      "location": {
+        "lat": 35.712678,
+        "lng": 139.761989
+      }
+    },
+    "adr_address": "<span class=\"country-name\">日本</span>, <span class=\"postal-code\">〒113-8654</span> <span class=\"region\">東京都</span><span class=\"locality\">文京区</span><span class=\"extended-address\">本郷</span><span class=\"street-address\">７−３−１</span>",
+    "place_id": "ChIJo24g-i-MGGARlboTg0kH5DA",
+    "international_phone_number": "+81 3-3812-2111",
+    "vicinity": "文京区本郷７−３−１",
+    "reviews": [
+      {
+        "rating": 4,
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "language": "ja",
+        "text": "歴史を誇る大学だけあって、古い建物が存在しています。\n売店（生協）に行くと普段のコンビニやスーパーではあまり置いていないジュースやお菓子があったりします。\nまた赤門ラーメンがわりかし有名ですので、寄ったついでに食べてみるのも良いかも。\nただ元が安い学食なので、味の方はあまり期待出来ませんが。\nお土産も充実してます。東大周りの定食店なども安めですし。\n安く時間を潰すには良い場所です。",
+        "author_name": "まえかわよしお",
+        "author_url": "https://plus.google.com/118409491129080820850",
+        "time": 1409401292
+      },
+      {
+        "rating": 1,
+        "aspects": [
+          {
+            "rating": 0,
+            "type": "overall"
+          }
+        ],
+        "language": "ja",
+        "text": "足切られた。ほんまクズ。一浪してこんなところ行くくらいなら 二浪して立命館いきます。",
+        "author_name": "豚饅豚饅",
+        "author_url": "https://plus.google.com/101035691648052388935",
+        "time": 1424493866
+      },
+      {
+        "rating": 3,
+        "aspects": [
+          {
+            "rating": 1,
+            "type": "overall"
+          }
+        ],
+        "language": "ja",
+        "text": "有名な東大。大きな敷地。東京帝国大学。普通の先生や学生さんが歩いてるみたいけど将来の政治家やノーベル賞候補なのかな？ 神々しいです(笑) 2014年5月。",
+        "author_name": "Nobuhide Takayanagi",
+        "author_url": "https://plus.google.com/107668880099887403676",
+        "time": 1410096678
+      },
+      {
+        "rating": 4,
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "language": "ja",
+        "text": "いつも医学系のセミナーを受講に行っています。\nええ、やっぱり真剣に学問を追及している場所ですから、学ぶには最適です。\nでも、ただブラブラしていても、手ごろなランチも食べられるし、緑多くて、気持ちのいい空間です。",
+        "author_name": "森田慶子",
+        "author_url": "https://plus.google.com/105275796960977910426",
+        "time": 1376581609
+      },
+      {
+        "rating": 4,
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "language": "ja",
+        "text": "日本有数の国立大学である東京大学、その中心がこの本郷キャンパスです。\n赤門や安田講堂、三四郎池など、文学作品や歴史的出来事の舞台になった場所があります。\nまた、理学部化学東館など、あまり知られてはいないが長い歴史を持った建造物も多く、観光するだけでも楽しいスポットだと思います。",
+        "author_name": "Atsushi Yamaguchi",
+        "author_url": "https://plus.google.com/100142969871701275357",
+        "time": 1385189064
+      }
+    ],
+    "formatted_phone_number": "03-3812-2111",
+    "url": "https://plus.google.com/118401126673683377879/about?hl=ja",
+    "scope": "GOOGLE",
+    "address_components": [
+      {
+        "long_name": "１",
+        "types": [
+          "sublocality_level_5",
+          "sublocality",
+          "political"
+        ],
+        "short_name": "１"
+      },
+      {
+        "long_name": "３",
+        "types": [
+          "sublocality_level_4",
+          "sublocality",
+          "political"
+        ],
+        "short_name": "３"
+      },
+      {
+        "long_name": "７",
+        "types": [
+          "sublocality_level_3",
+          "sublocality",
+          "political"
+        ],
+        "short_name": "７"
+      },
+      {
+        "long_name": "本郷",
+        "types": [
+          "sublocality_level_1",
+          "sublocality",
+          "political"
+        ],
+        "short_name": "本郷"
+      },
+      {
+        "long_name": "文京区",
+        "types": [
+          "locality",
+          "political"
+        ],
+        "short_name": "文京区"
+      },
+      {
+        "long_name": "東京都",
+        "types": [
+          "administrative_area_level_1",
+          "political"
+        ],
+        "short_name": "東京都"
+      },
+      {
+        "long_name": "日本",
+        "types": [
+          "country",
+          "political"
+        ],
+        "short_name": "JP"
+      },
+      {
+        "long_name": "113-8654",
+        "types": [
+          "postal_code"
+        ],
+        "short_name": "113-8654"
+      }
+    ],
+    "formatted_address": "日本, 〒113-8654 東京都文京区本郷７−３−１",
+    "id": "61c48d499dcb0525bc4cc67c66c62c85f81890f9",
+    "types": [
+      "university",
+      "establishment"
+    ],
+    "icon": "http://maps.gstatic.com/mapfiles/place_api/icons/university-71.png"
+  }
+}

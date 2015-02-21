@@ -1,5 +1,5 @@
 # Emacs tmp files
 *~
 
-# JSON data, examples
-*.json
+# Python byte code files
+*.pyc

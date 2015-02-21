@@ -1,0 +1,26 @@
+{
+  "kind": "plus#person",
+  "displayName": "Nobuhide Takayanagi",
+  "name": {
+    "givenName": "Nobuhide",
+    "familyName": "Takayanagi"
+  },
+  "isPlusUser": true,
+  "url": "https://plus.google.com/107668880099887403676",
+  "gender": "male",
+  "image": {
+    "url": "https://lh3.googleusercontent.com/-NW1HPk6hC8M/AAAAAAAAAAI/AAAAAAAAKa0/DL5MCCBASq0/photo.jpg?sz=50",
+    "isDefault": false
+  },
+  "placesLived": [
+    {
+      "primary": true,
+      "value": "日本東京都豊島区"
+    }
+  ],
+  "etag": "\"RqKWnRU4WW46-6W3rWhLR9iFZQM/CDnEnyEtkOBKimJL4GXLBhT-Wug\"",
+  "verified": false,
+  "circledByCount": 7,
+  "id": "107668880099887403676",
+  "objectType": "person"
+}
