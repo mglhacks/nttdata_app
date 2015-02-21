@@ -53,7 +53,7 @@ def profile():
     if request.form:
         pref_id = request.form['pref_id']
         print(request.form)
-    ranking1 = [  {'name':"Hachiko", 'comment':"comment1"}, 
+    ranking1 = [  {'name':"Hachiko", 'comment':"comment1"},
                 {'name':"Meijijingu", 'comment':"comment2"},
                 {'name':sample_place['name']
                 , 'comment':sample_place['website']} ]
@@ -138,6 +138,10 @@ def hello_template(name=None):
 @app.route('/test')
 def test_page():
     return render_template('test.html')
+
+@app.route("/test_db", methods=['GET'])
+def test_db():
+    return str(get_places_jp('es'))
 
 ### static file helpers
 # route for static js, css files
