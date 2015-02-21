@@ -4,7 +4,7 @@ import sqlite3
 import os.path
 import json
 
-DB = 'test1.db'
+DB = 'honban.db'
 conn = sqlite3.connect(DB)
 
 def save_raw_results(response, table):
