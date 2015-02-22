@@ -54,22 +54,23 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if user %}
                     <li class="page-scroll">
-                        <a href="/profile">{{ user[1] }}</a>
+                        <a href="/top"><img src="img/profile-default.png" height=24 /></a>
                     </li>
-                    {% else %}
                     <li class="page-scroll">
-                        <a href="/profile">Profile</a>
-                    </li>
-                    {% endif %}
-<!--                     <li class="page-scroll">
-                        <a href="/#register">Register</a>
-                    </li> -->
-                    <li class="page-scroll">
-                        <a href="/login">Log In</a>
+                        <a href="/top">{{ user['username'] }}</a>
                     </li>
                     <li class="page-scroll">
                         <a href="/logout">Log Out</a>
                     </li>
+                    {% else %}
+                    <li class="page-scroll">
+                        <a href="/login">Log In</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/#register">Sign up</a>
+                    </li>
+                    {% endif %}
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -36,11 +36,12 @@ def hello():
     if g.user:
         print(g.user)
         user = g.user
+        return redirect(url_for('top'))
     return render_template('index.html', user = user)
 
-# route for PROFILE
-@app.route("/profile", methods=['GET', 'POST'])
-def profile():
+# route for top
+@app.route("/top", methods=['GET', 'POST'])
+def top():
     if g.user:
         print(g.user)
         user = g.user
@@ -48,17 +49,18 @@ def profile():
         return redirect(url_for('login'))
 
     pref_id = 13
-    print("profile", request)
-    sample_place = get_place(1)
+    print("top", request)
+
+    sample_place = [ get_place(1), get_place(2), get_place(3) ]
     if request.form:
         pref_id = request.form['pref_id']
         print(request.form)
-    ranking1 = [  {'name':"Hachiko", 'comment':"comment1"},
+    ranking1 = [  {'name':"Hachiko", 'comment':"comment1"}, 
                 {'name':"Meijijingu", 'comment':"comment2"},
-                {'name':sample_place['name']
-                , 'comment':sample_place['website']} ]
+                {'name':sample_place[1]['name']
+                , 'comment':sample_place[1]['website']} ]
     data = {'pref_id':pref_id, 'category1': "category1", 'category2':"category2", 'ranking1':ranking1}
-    return render_template('profile.html', data = data, user = user)
+    return render_template('top.html', data = data, places = sample_place, user = user)
 
 ### LOGIN process
 @app.before_request
@@ -72,7 +74,7 @@ def before_request():
 def login():
     """Logs the user in."""
     if g.user:
-        return redirect(url_for('profile'))
+        return redirect(url_for('top'))
     error = None
     if request.method == 'POST':
         user = query_db('''select * from user where
@@ -85,7 +87,7 @@ def login():
         else:
             flash('You were logged in')
             session['user_id'] = user['user_id']
-            return redirect(url_for('profile'))
+            return redirect(url_for('top'))
     return render_template('login.html', error=error)
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -94,7 +96,7 @@ def register():
 
     print(request)
     if g.user:
-        return redirect(url_for('profile'))
+        return redirect(url_for('top'))
     error = None
     if request.method == 'POST':
         if not request.form['username']:
@@ -138,10 +140,6 @@ def hello_template(name=None):
 @app.route('/test')
 def test_page():
     return render_template('test.html')
-
-@app.route("/test_db", methods=['GET'])
-def test_db():
-    return str(get_places_jp('es'))
 
 ### static file helpers
 # route for static js, css files
