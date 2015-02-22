@@ -14,6 +14,8 @@ def process_pref(pref_id):
     f_in = codecs.open('rurubu/%s.csv'%(pref_id), 'r', 'utf-8')
     pref_place_names = f_in.read().splitlines()
     for rurubu_pref_rank, pn in enumerate(pref_place_names, start=1):
+        if rurubu_pref_rank > 10:
+            break # faster
         # search place
         search_results = search_api(pn)
         if len(search_results['results']) == 0:
@@ -37,5 +39,5 @@ def process_pref(pref_id):
                     save_review(place_id, r)
 
 db_init();
-for pref_id in range(16, 48):
+for pref_id in range(29, 48):
     process_pref(pref_id)

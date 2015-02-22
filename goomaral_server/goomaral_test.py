@@ -23,6 +23,55 @@ PER_PAGE = 30
 DEBUG = True
 SECRET_KEY = 'burtechono'
 
+prefs = [
+    'Hokkaido',
+    'Aomori',
+    'Iwate',
+    'Miyagi',
+    'Akita',
+    'Yamagata',
+    'Fukushima',
+    'Ibaraki',
+    'Tochigi',
+    'Gunma',
+    'Saitama',
+    'Chiba',
+    'Tokyo',
+    'Kanagawa',
+    'Niigata',
+    'Toyama',
+    'Ishikawa',
+    'Fukui',
+    'Yamanashi',
+    'Nagano',
+    'Gifu',
+    'Shizuoka',
+    'Aichi',
+    'Mie',
+    'Shiga',
+    'Kyoto',
+    'Osaka',
+    'Hyogo',
+    'Nara',
+    'Wakayama',
+    'Tottori',
+    'Shimane',
+    'Okayama',
+    'Hiroshima',
+    'Yamaguchi',
+    'Tokushima',
+    'Kagawa',
+    'Ehime',
+    'Kochi',
+    'Fukuoka',
+    'Saga',
+    'Nagasaki',
+    'Kumamoto',
+    'Oita',
+    'Miyazaki',
+    'Kagoshima',
+    'Okinawa']
+
 ### Create app
 # create our little application :)
 app = Flask(__name__)
@@ -59,7 +108,7 @@ def top():
     #sample_place = get_places_jp(language=language)
     sample_place = get_places_pref(pref_id=pref_id, language = language, size = 10)
 
-    data = {'pref_id':pref_id}
+    data = {'pref_id': prefs[int(pref_id)-1]}
     return render_template('top.html', data = data, places = sample_place, user = user, language = language)
 
 ### LOGIN process

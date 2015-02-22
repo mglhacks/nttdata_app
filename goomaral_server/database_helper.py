@@ -13,6 +13,7 @@ import json
 
 import sqlite3
 from operator import itemgetter
+from api_helper import *
 
 # user imports
 from goomaral_test import app, DATABASE
@@ -76,6 +77,18 @@ def get_places_jp(language='en', size=5):
 def get_places_pref(pref_id, language='en', size=5):
     """Returns top places of all Japan"""
     places = query_db('''select * from places where pref_id = ?''', [(pref_id)])
+    # for idx, p in enumerate(places):
+    #     if idx >= 1:
+    #         break
+    #     p['photo_objs'] = []
+    #     if p.get('photos') != None:
+    #         # print p.get('photos')
+    #         photos = json.loads(p.get('photos'), encoding='utf8')
+    #         if photos is None:
+    #             continue
+    #         print "len: %s"%(len(photos))
+    #         for photo in photos:
+    #             p['photo_objs'].append('<img src="data:image/png;base64,{0}">'.format(get_photo(photo.get('photo_reference'), 600)))
     add_scores2(places, language)
     places_sorted = sorted(places, key=itemgetter('score'), reverse=True)
     return places_sorted[0:size]
@@ -90,7 +103,7 @@ def get_post3(post_id):
     post = query_db('''select * from post where post.post_id = ?''', [post_id], one=True)
     return post
 
-def convert_country_to_language(country):    
+def convert_country_to_language(country):
     langs = ['en', 'jp', 'es', 'de', 'ko', 'ru', 'pt', 'nl', 'hi', 'ar', 'bg', 'ca', 'id', 'ml', 'te', 'vi', 'th', 'pl', 'it', 'iw']
     if country in langs:
         return country
