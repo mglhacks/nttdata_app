@@ -69,14 +69,14 @@ def get_place(id):
 def get_places_jp(language='en', size=5):
     """Returns top places of all Japan"""
     places = query_db('''select * from places''')
-    add_scores(places, language)
+    add_scores2(places, language)
     places_sorted = sorted(places, key=itemgetter('score'), reverse=True)
     return places_sorted[0:size]
 
 def get_places_pref(pref_id, language='en', size=5):
     """Returns top places of all Japan"""
-    places = query_db('''select * from places where pref_id = ?''', (pref_id))
-    add_scores(places, language)
+    places = query_db('''select * from places where pref_id = ?''', [(pref_id)])
+    add_scores2(places, language)
     places_sorted = sorted(places, key=itemgetter('score'), reverse=True)
     return places_sorted[0:size]
 
@@ -116,3 +116,23 @@ def add_scores(places, language):
         else:
             ratings = [r['rating'] for r in reviews]
             p['score'] = sum(ratings) / float(len(reviews))
+
+def add_scores2(places, language):
+    """Adds calculated score to each place (modifies the passed places list)"""
+    # TODO: calculation
+    for p in places:
+        all_reviews = query_db('''select * from reviews where place_id = ?''', [p['place_id']])
+        print len(all_reviews)
+        count = 0
+        rating = 0
+        for r in all_reviews:
+            if r['language'] == language:
+                rating += 10*r['rating']
+                count += 10
+            else:
+                rating += r['rating']
+                count +=1
+        if count != 0:
+            p['score'] = rating #/ float(count)
+        else:
+            p['score'] = p['rating']

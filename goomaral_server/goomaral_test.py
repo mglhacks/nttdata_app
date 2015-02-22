@@ -56,7 +56,8 @@ def top():
 
     # setting user language
     language = convert_country_to_language(user['country'])
-    sample_place = get_places_jp(language='ko')
+    #sample_place = get_places_jp(language=language)
+    sample_place = get_places_pref(pref_id=pref_id, language = language, size = 10)
 
     data = {'pref_id':pref_id}
     return render_template('top.html', data = data, places = sample_place, user = user, language = language)
