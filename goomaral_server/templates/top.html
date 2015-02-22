@@ -5,81 +5,23 @@
 <!-- Form Section -->
 <section id="search">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <br>
-                <h2>Select the region</h2>
-                <hr class="star-primary">
-            </div>
+        <!-- <div class="row">
+        <div class="col-lg-12 text-center">
+        <br>
+        <h2>Select the region</h2>
+        <hr class="star-primary">
         </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                <form action="/top" method="post">
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Region</label>
-                            <div class="bfh-selectbox" data-name="pref_id" data-value={% if data %} {{data["pref_id"]}} {% else %}"13"{% endif %}>
-                                <div data-value="">都道府県</div>
-                                <div data-value="1">北海道</div>
-                                <div data-value="2">青森県</div>
-                                <div data-value="3">岩手県</div>
-                                <div data-value="4">宮城県</div>
-                                <div data-value="5">秋田県</div>
-                                <div data-value="6">山形県</div>
-                                <div data-value="7">福島県</div>
-                                <div data-value="8">茨城県</div>
-                                <div data-value="9">栃木県</div>
-                                <div data-value="10">群馬県</div>
-                                <div data-value="11">埼玉県</div>
-                                <div data-value="12">千葉県</div>
-                                <div data-value="13">東京都</div>
-                                <div data-value="14">神奈川県</div>
-                                <div data-value="15">新潟県</div>
-                                <div data-value="16">富山県</div>
-                                <div data-value="17">石川県</div>
-                                <div data-value="18">福井県</div>
-                                <div data-value="19">山梨県</div>
-                                <div data-value="20">長野県</div>
-                                <div data-value="21">岐阜県</div>
-                                <div data-value="22">静岡県</div>
-                                <div data-value="23">愛知県</div>
-                                <div data-value="24">三重県</div>
-                                <div data-value="25">滋賀県</div>
-                                <div data-value="26">京都府</div>
-                                <div data-value="27">大阪府</div>
-                                <div data-value="28">兵庫県</div>
-                                <div data-value="29">奈良県</div>
-                                <div data-value="30">和歌山県</div>
-                                <div data-value="31">鳥取県</div>
-                                <div data-value="32">島根県</div>
-                                <div data-value="33">岡山県</div>
-                                <div data-value="34">広島県</div>
-                                <div data-value="35">山口県</div>
-                                <div data-value="36">徳島県</div>
-                                <div data-value="37">香川県</div>
-                                <div data-value="38">愛媛県</div>
-                                <div data-value="39">高知県</div>
-                                <div data-value="40">福岡県</div>
-                                <div data-value="41">佐賀県</div>
-                                <div data-value="42">長崎県</div>
-                                <div data-value="43">熊本県</div>
-                                <div data-value="44">大分県</div>
-                                <div data-value="45">宮崎県</div>
-                                <div data-value="46">鹿児島県</div>
-                                <div data-value="47">沖縄県</div>
-                            </div>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <input type="submit" class="btn btn-primary" value="Submit"/>
-
-                </form>
-                {% if data %}
-                Selected pref_id is: {{data["pref_id"]}}.
-                {{data}}
-                {% endif %}
+        </div> -->
+        <div class="row text-center">
+            <br>
+            <p id="area-select-guide" class="help-block text-center"></p>
+            <div id="area-select-map" hidden></div>
+            <form id="area-select-form" action="/top" method="post">
+                <input type="hidden" id="area-select-input" name="pref_id"/>
+            </form>
+            <div id="area-select-current" class="btn btn-primary">
+                Current region:
+                {% if data %} {{data["pref_id"]}} {% else %} 0 {% endif %}
             </div>
         </div>
     </div>
@@ -140,7 +82,7 @@
                                         <div class="item">
                                             <img class="img-responsive img-full" src="img/slide-3.jpg" alt="" height=300>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <!-- Controls -->
                                     <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                         <span class="icon-prev"></span>
@@ -148,14 +90,14 @@
                                     <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
                                         <span class="icon-next"></span>
                                     </a>
-                                </div>      
+                                </div>
                             </div>
                         </div>
 
                     </div>
                     <!-- /.container -->
 
-                </div>                        
+                </div>
 
                 {% endfor %}
                 {% else %}
