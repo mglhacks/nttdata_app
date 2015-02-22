@@ -70,14 +70,14 @@ def get_places_jp(language='en', size=5):
     """Returns top places of all Japan"""
     places = query_db('''select * from places''')
     add_scores(places, language)
-    places_sorted = sorted(places, key=itemgetter('score'))
+    places_sorted = sorted(places, key=itemgetter('score'), reverse=True)
     return places_sorted[0:size]
 
 def get_places_pref(pref_id, language='en', size=5):
     """Returns top places of all Japan"""
     places = query_db('''select * from places where pref_id = ?''', (pref_id))
     add_scores(places, language)
-    places_sorted = sorted(places, key=itemgetter('score'))
+    places_sorted = sorted(places, key=itemgetter('score'), reverse=True)
     return places_sorted[0:size]
 
 def get_post2(post_id):
@@ -89,6 +89,12 @@ def get_post3(post_id):
     """Returns one post by post_id"""
     post = query_db('''select * from post where post.post_id = ?''', [post_id], one=True)
     return post
+
+def convert_country_to_language(country):    
+    langs = ['en', 'jp', 'es', 'de', 'ko', 'ru', 'pt', 'nl', 'hi', 'ar', 'bg', 'ca', 'id', 'ml', 'te', 'vi', 'th', 'pl', 'it', 'iw']
+    if country in langs:
+        return country
+    return 'en'
 
 # login db
 def get_user_id(email):

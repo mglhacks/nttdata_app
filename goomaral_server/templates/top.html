@@ -98,29 +98,31 @@
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="tab1">
                         <p>コンテンツ1</p>
-
+                        current language: {{language}} {{user['country']}}
+                        <div class="bfh-selectbox bfh-language" data-country={{language}} data-flags="true" data-available={{language}}></div>
                         {% if places %}
                         {% for place in places %}
-    <a  name="services"></a>
-    <div class="content-sections">
+                        <a  name="services"></a>
+                        <div class="content-sections">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-sm-6 text-left">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h3 class="section-heading"><img src={{place['icon']}} height=40/> {{place["name"]}}</h3>
-                    <p class="lead">
-                        Rating = {{place['rating']}}<br>
-                                Total reviews{{place['user_ratings_total']}}<br>
-                                Address: {{place['formatted_address']}} <!-- [show in google map{{place['geometry']}}] --><br>
-                                Phone: {{place['international_phone_number']}}<br>
-                                URL: <a href={{place['website']}}>{{place['website']}}</a><br>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-5 col-sm-6 text-left">
+                                        <hr class="section-heading-spacer">
+                                        <div class="clearfix"></div>
+                                        <h3 class="section-heading"><a href={{place['url'] }}><img src={{place['icon']}} height=40/> {{place["name"]}}</a></h3>
+                                        <p class="lead">
+                                            Rating = {{place['rating']}}<br>
+                                            Total reviews: {{place['user_ratings_total']}}<br>
+                                            Score: {{ place['score'] }}<br>
+                                            Address: {{place['formatted_address']}} <!-- [show in google map{{place['geometry']}}] --><br>
+                                            Phone: {{place['international_phone_number']}}<br>
+                                            URL: <a href={{place['website']}}>{{place['website']}}</a><br>
                                 <!-- {{place['types']}}<br>
                                 じゃらんAPI?<br> --></p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <div id="carousel-example-generic" class="carousel slide">
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                                <div id="carousel-example-generic" class="carousel slide">
                                     <!-- Indicators -->
                                     <ol class="carousel-indicators hidden-xs">
                                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -147,29 +149,27 @@
                                         <span class="icon-next"></span>
                                     </a>
                                 </div>      
-                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container -->
+
+                </div>                        
+
+                {% endfor %}
+                {% else %}
+                <p> No Data </p>
+                {% endif %}
             </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>                        
-                        
-                        {% endfor %}
-                        {% else %}
-                        <p> No Data </p>
-                        {% endif %}
-                    </div>
-                    <div class="tab-pane fade" id="tab2">
-                        <p>コンテンツ2</p>
-                        {% if data %}
-                        content: {{data["category2"]}}.
-                        {% endif %}
-                    </div>
-                </div>
+            <div class="tab-pane fade" id="tab2">
+                <p>コンテンツ2</p>
+                No Data
             </div>
         </div>
     </div>
+</div>
+</div>
 </section>
 
 {% endblock %}
