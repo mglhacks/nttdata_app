@@ -7,6 +7,17 @@ import json
 DB = 'honban-new.db'
 conn = sqlite3.connect(DB)
 
+def query_db(query, args=(), one=False):
+    """Queries the database and returns a list of dictionaries."""
+    cur = conn.execute(query, args)
+    rv = cur.fetchall()
+    return (rv[0] if rv else None) if one else rv
+
+def get_place(place_id):
+    """Returns one place by id"""
+    place = query_db('''select * from places where place_id = ?''', [place_id], one=True)
+    return place
+
 def save_raw_results(response, table):
     conn.execute("""insert into %s(url, result) values (?, ?)"""%(table),\
                  (response.url, json.dumps(response.json())))

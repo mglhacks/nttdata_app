@@ -20,20 +20,22 @@ def process_pref(pref_id):
             continue # no place found
         else:
             place_id = search_results['results'][0]['place_id']
-        # get details of the top place in english
-        details = details_api(place_id, 'en')['result']
-        # save details into the database
-        save_place_details(details, pref_id, rurubu_pref_rank)
+            if get_place(place_id) != None:
+                print "Place already exists"
+                continue
         # get details of the top place for each language
         for l in langs:
             d = details_api(place_id, l)['result']
+            if (l == 'en'):
+                # save details into the database
+                save_place_details(d, pref_id, rurubu_pref_rank)
             save_name(place_id, d['name'], l)
             if 'reviews' not in d:
                 continue # No review
             for r in d['reviews']:
-                if r['language'] == l:
+                if r.get('language') == l:
                     save_review(place_id, r)
 
 db_init();
-for pref_id in range(1, 48):
+for pref_id in range(16, 48):
     process_pref(pref_id)
