@@ -48,19 +48,18 @@ def top():
     else:
         return redirect(url_for('login'))
 
-    pref_id = 13
-    print("top", request)
-
-    sample_place = [ get_place(1), get_place(2), get_place(3) ]
+    # setting pref id
+    pref_id = 13    # defeault tokyo 13
     if request.form:
         pref_id = request.form['pref_id']
         print(request.form)
-    ranking1 = [  {'name':"Hachiko", 'comment':"comment1"}, 
-                {'name':"Meijijingu", 'comment':"comment2"},
-                {'name':sample_place[1]['name']
-                , 'comment':sample_place[1]['website']} ]
-    data = {'pref_id':pref_id, 'category1': "category1", 'category2':"category2", 'ranking1':ranking1}
-    return render_template('top.html', data = data, places = sample_place, user = user)
+
+    # setting user language
+    language = convert_country_to_language(user['country'])
+    sample_place = get_places_jp(language='ko')
+
+    data = {'pref_id':pref_id}
+    return render_template('top.html', data = data, places = sample_place, user = user, language = language)
 
 ### LOGIN process
 @app.before_request
@@ -139,7 +138,10 @@ def hello_template(name=None):
 
 @app.route('/test')
 def test_page():
-    return render_template('test.html')
+    places = get_places_jp(language='ko', size=5)
+    for place in places:
+        print place['id'], place['score']
+    return "ok"
 
 ### static file helpers
 # route for static js, css files
