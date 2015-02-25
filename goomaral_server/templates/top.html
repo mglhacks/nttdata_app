@@ -76,7 +76,7 @@
                                             <!-- Wrapper for slides -->
                                             <div class="carousel-inner">
                                                 <div class="item active">
-                                                    <img class="img-responsive img-full" src="img/slide-2.jpg" alt="" height=300>
+                                                    <img class="img-responsive img-full" src={% if place['photo_objs']|length >= 1 %}"{{place['photo_objs'][0]}}"{% else %}"img/slide-1.jpg"{% endif %} alt="" height=300>
                                                 </div>
                                                 <div class="item">
                                                     <img class="img-responsive img-full" src="img/slide-2.jpg" alt="" height=300>
