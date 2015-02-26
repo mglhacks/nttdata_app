@@ -78,16 +78,16 @@ def get_places_jp(language='en', size=5):
 def get_places_pref(pref_id, language='en', size=5):
     """Returns top places of a prefecture"""
     places = query_db('''select * from places where pref_id = ?''', [(pref_id)])
-    for p in places:
-        p['photo_objs'] = []
-        if p.get('photos') != None:
-            photos = json.loads(p.get('photos'), encoding='utf8')
-            if photos is None:
-                continue # This happens sometimes
-            for idx, photo in enumerate(photos):
-                if idx >= 1:
-                    break # Enough photo for the place
-                p['photo_objs'].append(get_photo_src(photo.get('photo_reference')))
+    # for p in places:
+    #     p['photo_objs'] = []
+    #     if p.get('photos') != None:
+    #         photos = json.loads(p.get('photos'), encoding='utf8')
+    #         if photos is None:
+    #             continue # This happens sometimes
+    #         for idx, photo in enumerate(photos):
+    #             if idx >= 1:
+    #                 break # Enough photo for the place
+    #             p['photo_objs'].append(get_photo_src(photo.get('photo_reference')))
     add_scores2(places, language)
     places_sorted = sorted(places, key=itemgetter('score'), reverse=True)
     return places_sorted[0:size]
