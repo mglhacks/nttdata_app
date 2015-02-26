@@ -134,7 +134,7 @@ def add_scores2(places, language):
     # TODO: calculation
     for p in places:
         all_reviews = query_db('''select * from reviews where place_id = ?''', [p['place_id']])
-        print len(all_reviews)
+        
         count = 0
         rating = 0
         for r in all_reviews:

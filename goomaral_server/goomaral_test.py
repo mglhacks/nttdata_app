@@ -92,7 +92,6 @@ def hello():
 @app.route("/top", methods=['GET', 'POST'])
 def top():
     if g.user:
-        print(g.user)
         user = g.user
     else:
         return redirect(url_for('login'))
@@ -101,7 +100,6 @@ def top():
     pref_id = 13    # defeault tokyo 13
     if request.form:
         pref_id = request.form['pref_id']
-        print(request.form)
 
     # setting user language
     language = convert_country_to_language(user['country'])
