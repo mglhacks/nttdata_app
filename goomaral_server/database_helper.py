@@ -76,7 +76,7 @@ def get_places_jp(language='en', size=5):
     return places_sorted[0:size]
 
 def get_places_pref(pref_id, language='en', size=5):
-    """Returns top places of all Japan"""
+    """Returns top places of a prefecture"""
     places = query_db('''select * from places where pref_id = ?''', [(pref_id)])
     for p in places:
         p['photo_objs'] = []
