@@ -17,7 +17,7 @@ from operator import itemgetter
 from api_helper import *
 
 # user imports
-from goomaral_test import app, DATABASE
+from goomaral_test import app
 
 ### DATABASE basic functions
 def dict_factory(cursor, row):

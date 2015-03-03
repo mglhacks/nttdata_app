@@ -17,12 +17,6 @@ import sqlite3
 # user imports
 from database_helper import *
 
-### Variables
-DATABASE = './database.db'
-PER_PAGE = 30
-DEBUG = True
-SECRET_KEY = 'burtechono'
-
 prefs = [
     'Hokkaido',
     'Aomori',
@@ -75,7 +69,7 @@ prefs = [
 ### Create app
 # create our little application :)
 app = Flask(__name__)
-app.config.from_object(__name__)
+app.config.from_object('settings')
 api = Api(app)
 
 # route for INDEX
