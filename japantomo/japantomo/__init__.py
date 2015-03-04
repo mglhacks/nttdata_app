@@ -11,12 +11,14 @@ from flask.ext.restful import reqparse, abort, Api, Resource
 import json
 
 import sqlite3
+from flask.ext.sqlalchemy import SQLAlchemy
 
 ### Create app
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object('settings')
 api = Api(app)
+db = SQLAlchemy(app)
 
 # user imports
 from japantomo import controllers, database_helper

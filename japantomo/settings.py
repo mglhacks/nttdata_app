@@ -13,3 +13,5 @@ MYSQL_DATABASE_USER='goomaral'
 MYSQL_DATABASE_PASSWORD='japantomo'
 MYSQL_DATABASE_DB='japantomo'
 MYSQL_DATABASE_CHARSET='utf8'
+# format is dialect+driver://username:password@host:port/database
+SQLALCHEMY_DATABASE_URI='mysql://goomaral:japantomo@localhost/japantomo'

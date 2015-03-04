@@ -3,6 +3,11 @@
 NTT Data Hackathon
 Goo Maral Application
 """
+
+"""
+Important: this file is no longer used. Core file is app.__init__.py
+"""
+
 import os
 # flask imports
 from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash, _app_ctx_stack, jsonify, send_from_directory
