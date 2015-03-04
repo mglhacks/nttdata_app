@@ -21,4 +21,4 @@ api = Api(app)
 db = SQLAlchemy(app)
 
 # user imports
-from japantomo import controllers, database_helper
+from japantomo import controllers, database_helper, models
