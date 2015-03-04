@@ -5,3 +5,4 @@
 *.pyc
 
 data_scripts/honban-new.db
+japantomo/database.db
