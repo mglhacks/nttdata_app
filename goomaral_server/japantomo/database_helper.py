@@ -17,7 +17,7 @@ from operator import itemgetter
 from .api_helper import *
 
 # user imports
-from app import app
+from japantomo import app
 
 ### DATABASE basic functions
 def dict_factory(cursor, row):
@@ -134,7 +134,7 @@ def add_scores2(places, language):
     # TODO: calculation
     for p in places:
         all_reviews = query_db('''select * from reviews where place_id = ?''', [p['place_id']])
-        
+
         count = 0
         rating = 0
         for r in all_reviews:

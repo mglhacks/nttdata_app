@@ -18,6 +18,5 @@ app = Flask(__name__)
 app.config.from_object('settings')
 api = Api(app)
 
-
 # user imports
-from app import controllers, database_helper
+from japantomo import controllers, database_helper

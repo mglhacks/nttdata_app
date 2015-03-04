@@ -11,7 +11,7 @@ from flask.ext.restful import reqparse, abort, Api, Resource
 import json
 
 # user imports
-from app import app
+from japantomo import app
 from .database_helper import *
 
 # ### LOGIN process
