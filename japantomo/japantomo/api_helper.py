@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
+"""Utility methods for conversing with various APIs"""
+
 import requests # Requests is recommended over urllib*
-import codecs
 
 API_KEY = 'AIzaSyBBN84m4bDAzLnE1dhZ-QpDtAJcq-upOes'
 
@@ -17,5 +18,3 @@ def get_photo_src(photo_reference, maxwidth=300):
         return 'data:%s;base64,%s'%(
             response.headers.get('content-type'),\
             response.content.encode("base64").rstrip('\n'))
-
-# print get_photo_src('CvQB4gAAAGbRe84vNVLvmx7xOcICuZEH52iExU44q2S8ApfvByM74LnaDQehiC7zbcUrQn6tHtxR2TXlansviRUus28_AEU38r5JyiWNfMQddtCtIGyrdmKrXacsWkCp_iv6O0M6TAGE3AK71gG0fja_QJEdMvZb01_navrdb5yJXgPG08Sig81v1pWaZNw4ncBzJPsuapuIm_1u5gm2jbr351YkwRRZs5y7UpCLRPcWfhZ7XhMrkmPrcXJFG7mtip3mYcsAJEDTNDp7Q53xGBmKTs25-HOXmoHWN91uNA9nO88QXQulgApC5B7LCBPfGWzV5uCM_BIQhYBwVLVejUAq-Bb1kUeDuBoUSB4IFxVoWmMM3u2boZ8zjSZHtig', 300)

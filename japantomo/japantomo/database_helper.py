@@ -4,32 +4,25 @@ NTT Data Hackathon
 Goo Maral Application
 """
 
-# flask imports
-from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash, _app_ctx_stack, jsonify, send_from_directory
-from werkzeug import check_password_hash, generate_password_hash
-from flask.ext.restful import reqparse, abort, Api, Resource
-from werkzeug import secure_filename
-import json
-import urllib
-
 import sqlite3
-from operator import itemgetter
-from .api_helper import *
 
-# user imports
+from flask import _app_ctx_stack
 from japantomo import app
+from operator import itemgetter
+
+# from .api_helper import get_photo_src
 
 ### DATABASE basic functions
 def dict_factory(cursor, row):
-    d = {}
+    """Dict factory: used to directly operate on sqlite as dicts"""
+    dic = {}
     for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
+        dic[col[0]] = row[idx]
+    return dic
 
 def get_db():
     """Opens a new database connection if there is none yet for the
-    current application context.
-    """
+    current application context."""
     top = _app_ctx_stack.top
     if not hasattr(top, 'sqlite_db'):
         top.sqlite_db = sqlite3.connect(app.config['DATABASE'])
@@ -40,32 +33,32 @@ def get_db():
 @app.teardown_appcontext
 def close_database(exception):
     """Closes the database again at the end of the request."""
+    print exception
     top = _app_ctx_stack.top
     if hasattr(top, 'sqlite_db'):
         top.sqlite_db.close()
 
-
 def init_db():
     """Creates the database tables."""
     with app.app_context():
-        db = get_db()
-        with app.open_resource('schema.sql', mode='r') as f:
-            db.cursor().executescript(f.read())
-        db.commit()
+        db_conn = get_db()
+        with app.open_resource('user_schema.sql', mode='r') as in_file:
+            db_conn.cursor().executescript(in_file.read())
+        db_conn.commit()
     # add post1
     # add_post(1)
 
 def query_db(query, args=(), one=False):
     """Queries the database and returns a list of dictionaries."""
     cur = get_db().execute(query, args)
-    rv = cur.fetchall()
-    return (rv[0] if rv else None) if one else rv
+    rows = cur.fetchall()
+    return (rows[0] if (rows and len(rows) != 0) else None) if one else rows
 ########
 
 ### Getter and setters
-def get_place(id):
-    """Returns one place by id"""
-    place = query_db('''select * from places where places.id = ?''', [id], one=True)
+def get_place(identity):
+    """Returns one place by id (not place_id)"""
+    place = query_db('''select * from places where places.id = ?''', [identity], one=True)
     return place
 
 def get_places_jp(language='en', size=5):
@@ -103,7 +96,9 @@ def get_post3(post_id):
     return post
 
 def convert_country_to_language(country):
-    langs = ['en', 'jp', 'es', 'de', 'ko', 'ru', 'pt', 'nl', 'hi', 'ar', 'bg', 'ca', 'id', 'ml', 'te', 'vi', 'th', 'pl', 'it', 'iw']
+    """Convert country to language"""
+    langs = ['en', 'jp', 'es', 'de', 'ko', 'ru', 'pt', 'nl', 'hi', 'ar', 'bg', 'ca', 'id', 'ml',\
+             'te', 'vi', 'th', 'pl', 'it', 'iw']
     if country in langs:
         return country
     return 'en'
@@ -111,40 +106,36 @@ def convert_country_to_language(country):
 # login db
 def get_user_id(email):
     """Convenience method to look up the id for a username."""
-    rv = query_db('select user_id from user where email = ?',
-                  [email], one=True)
-    return rv[0] if rv else None
+    rows = query_db('select user_id from user where email = ?', [email], one=True)
+    return rows[0] if (rows and len(rows) != 0) else None
 
 ### Inner methods
 def add_scores(places, language):
     """Adds calculated score to each place (modifies the passed places list)"""
-    # TODO: calculation
-    for p in places:
+    for place in places:
         reviews = query_db('''select * from reviews where place_id = ? and language = ?''',\
-                           (p['place_id'], language))
+                           (place['place_id'], language))
         if len(reviews) == 0:
             # No review found for this language
-            p['score'] = p['rating']
+            place['score'] = place['rating']
         else:
             ratings = [r['rating'] for r in reviews]
-            p['score'] = sum(ratings) / float(len(reviews))
+            place['score'] = sum(ratings) / float(len(reviews))
 
 def add_scores2(places, language):
     """Adds calculated score to each place (modifies the passed places list)"""
-    # TODO: calculation
-    for p in places:
-        all_reviews = query_db('''select * from reviews where place_id = ?''', [p['place_id']])
-
+    for place in places:
+        all_reviews = query_db('''select * from reviews where place_id = ?''', [place['place_id']])
         count = 0
         rating = 0
-        for r in all_reviews:
-            if r['language'] == language:
-                rating += 10*r['rating']
+        for review in all_reviews:
+            if review['language'] == language:
+                rating += 10*review['rating']
                 count += 10
             else:
-                rating += r['rating']
-                count +=1
+                rating += review['rating']
+                count += 1
         if count != 0:
-            p['score'] = rating #/ float(count)
+            place['score'] = rating #/ float(count)
         else:
-            p['score'] = p['rating']
+            place['score'] = place['rating']

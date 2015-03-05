@@ -5,7 +5,8 @@ Goo Maral Application
 """
 
 # flask imports
-from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash, _app_ctx_stack, jsonify, send_from_directory
+from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash,\
+    _app_ctx_stack, jsonify, send_from_directory
 from werkzeug import check_password_hash, generate_password_hash
 from flask.ext.restful import reqparse, abort, Api, Resource
 import json
@@ -28,7 +29,7 @@ def before_request():
 def hello():
     user = None
     if g.user:
-        print(g.user)
+        print g.user
         user = g.user
         return redirect(url_for('top'))
     return render_template('index.html', user = user)
