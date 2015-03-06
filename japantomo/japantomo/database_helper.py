@@ -33,7 +33,8 @@ def get_db():
 @app.teardown_appcontext
 def close_database(exception):
     """Closes the database again at the end of the request."""
-    print exception
+    if exception is not None:
+        print exception
     top = _app_ctx_stack.top
     if hasattr(top, 'sqlite_db'):
         top.sqlite_db.close()
