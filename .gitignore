@@ -4,5 +4,28 @@
 # Python byte code files
 *.pyc
 
-data_scripts/honban-new.db
-japantomo*/database.db
+# Fbone (japantomo) ignores
+*.egg-info
+*.log
+*.pyc
+*.db
+*.swp
+*.swo
+*.zip
+*.cfg
+*.tox
+*.mo
+
+*.db
+*.sqlite
+
+japantomo/dist
+japantomo/build
+
+japantomo/instance
+japantomo/production.py
+japantomo/logs
+japantomo/uploads
+japantomo/openid
+
+japantomo/env
