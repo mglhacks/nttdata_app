@@ -9,6 +9,7 @@ from .config import DefaultConfig
 from .user import User, user
 from .settings import settings
 from .frontend import frontend
+from .rankings import rankings
 from .api import api
 from .admin import admin
 from .extensions import db, mail, cache, login_manager, oid
@@ -20,10 +21,11 @@ __all__ = ['create_app']
 
 DEFAULT_BLUEPRINTS = (
     frontend,
-    user,
-    settings,
-    api,
-    admin,
+    rankings
+    # user,
+    # settings,
+    # api,
+    # admin,
 )
 
 
