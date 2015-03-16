@@ -4,134 +4,172 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{{ page_title|default(_('Project')) }}{% endblock %} - Project</title>
-    <meta name="description" content="Fbone (Flask bone) is a Flask (Python microframework) template/bootstrap/boilerplate application.">
-    <meta name="author" content="Wilson Xu">
-    <!-- To ensure proper rendering and touch zooming, add the viewport meta tag to your <head>. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="Shortcut Icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Team Ants">
+
+    <title>{% block title %}{{ page_title|default(_('Welcome!')) }}{% endblock %} - Japan Tomo</title>
 
     {% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    {% endblock %}
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
 
-    {% block css_style %}
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/freelancer.css') }}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link href="{{ url_for('static', filename='css/bootstrap-formhelpers.min.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     {% endblock %}
 
     {% block js_top %}
-    <script src="{{ url_for('static', filename='js/vendor/modernizr-2.6.2.min.js') }}"></script>
     {% endblock %}
 </head>
-<body style="padding-top: 20px; padding-bottom: 20px">
+<body id="page-top" class="index">
     {% include "macros/_ask_user_to_update_ie.html" %}
 
     {% block topbar %}
-    <div class='container'>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ url_for('frontend.index') }}">Flask Bone</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href='https://github.com/imwilsonxu/japantomo'>About</a></li>
-                        <li><a href='{{ url_for('frontend.help') }}'>Help</a></li>
-                        <li><a href='https://github.com/imwilsonxu/japantomo/blob/master/LICENSE'>Terms</a></li>
-                        <li><a href='http://imwilsonxu.com'>Blog</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                    {% if current_user.is_authenticated() %}
-                        {% if current_user.is_admin() %}
-                        <li><a href="{{ url_for('admin.index') }}">{{ current_user.name }}</a></li>
-                        {% else %}
-                        <li><a href="{{ url_for('user.index') }}">{{ current_user.name }}</a></li>
-                        {% endif %}
-                        <li><a href="{{ url_for('settings.profile') }}">Settings</a></li>
-                        <li><a href="{{ url_for('frontend.logout') }}">Log out</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('frontend.signup') }}"><strong>Sign up</strong></a></li>
-                        <li><a href="{{ url_for('frontend.login') }}">Sign in</a></li>
-                    {% endif %}
-                    </ul>
-                </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Japan Tomo</a>
             </div>
-        </nav>
-    </div>
-    {% endblock %}
 
-    {% block flash_message %}
-        <div class="container-fluid">
-        {% with messages = get_flashed_messages(with_categories=True) %}
-            {% if messages %}
-            <div class="container-fluid">
-                <div id='flash_message_container'>
-                    {% for category, msg in messages %}
-                        <div class="alert alert-{{ category }}">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            {{ msg }}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-        {% endwith %}
-        </div>
-    {% endblock %}
-
-    {% block container %}
-    <div class="container">
-
-        {% block top %}
-            {% if tabs %}
-            <div>
-                <ul class="nav nav-tabs">
-                    {% for tab, link in tabs %}
-                    <li class="{% if active == tab %}active{% endif %}">
-                    <a href="{{ link }}">{{ tab|capitalize }}</a>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user %}
+                    <li class="page-scroll">
+                        <a href="/top"><img src="img/profile-default.png" height=24 /></a>
                     </li>
-                    {% endfor %}
+                    <li class="page-scroll">
+                        <a href="/top">{{ user['username'] }}</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/logout">Log Out</a>
+                    </li>
+                    {% else %}
+                    <li class="page-scroll">
+                        <a href="/login">Log In</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/#register">Sign up</a>
+                    </li>
+                    {% endif %}
+
                 </ul>
-            <div>
-            {% endif %}
-        {% endblock %}
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
-        {% block body %}
-        {% endblock %}
-
-    </div>
     {% endblock %}
 
-    <footer>
+
+    {% block body %}
+    {% endblock %}
+
+    {% block footer %}
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>NTT DATA CUBE1<br>Chofu, Tokyo</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>About Japan Tomo</h3>
+                        <p>Japan Tomo is a personalized Japan travel destination recommendation engine created by Ants.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Ants 2015
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    {% block js_btm %}
-    <!--
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    -->
-    {% set jquery_path = url_for('static', filename='js/vendor/jquery-1.10.2.min.js') %}
-    <script>window.jQuery || document.write('<script src="{{ jquery_path }}"><\/script>')</script>
-    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
-    <script src="{{ url_for('static', filename='js/vendor/bootstrap.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visble-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
     {% endblock %}
 
-    {% block ga %}
-    {#% include "macros/_google_analytics.html" %#}
+    {% block js_btm %}
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- Bootstrap form helper -->
+    <script src="{{ url_for('static', filename='js/bootstrap-formhelpers.min.js') }}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/classie.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cbpAnimatedHeader.js') }}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ url_for('static', filename='js/freelancer.js') }}"></script>
     {% endblock %}
+
 </body>
 </html>
