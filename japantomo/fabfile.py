@@ -12,6 +12,12 @@ env.user = ''
 env.hosts = ['']
 
 
+def activate_venv():
+    local("virtualenv env")
+    activate_this = "env/bin/activate_this.py"
+    execfile(activate_this, dict(__file__=activate_this))
+
+
 def reset():
     """
     Reset local debug env.
@@ -26,10 +32,7 @@ def setup():
     """
     Setup virtual env.
     """
-
-    local("virtualenv env")
-    activate_this = "env/bin/activate_this.py"
-    execfile(activate_this, dict(__file__=activate_this))
+    activate_venv()
     local("python setup.py install")
     reset()
 
@@ -38,7 +41,7 @@ def d():
     """
     Debug.
     """
-
+    activate_venv()
     reset()
     local("python manage.py run")
 
